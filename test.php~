@@ -1,0 +1,21 @@
+<?php
+
+include("conn.php");
+include("get_used_status.php");
+include("get_ip.php");
+
+$get_ip = getIP();
+echo $get_ip;
+die();
+
+$conn = new MyConnect();
+$conn->connect("localhost","root","864159025","project");
+$status=get_used_status();
+
+ 
+ $sql = "insert into status(s_id,tasks_running,tasks_using,tasks_sleeping,tasks_stopping,tasks_zombie,cpu_presentage,memory_total,memory_using,memory_free,memory_buffer,io_tps,io_kB_read_s,io_kB_wrtn_s,io_kB_read,io_kB_wrtn,sw_type,sw_size,sw_used,sw_priority,time_detection)";
+ $sql .= " value('','".$status['tasks_running']."','".$status['tasks_using']."','".$status['tasks_sleeping']."','".$status['tasks_stopping']."','".$status['tasks_zombie']."','".$status['cpu_presentage']."','".$status['memory_total']."','".$status['memory_using']."','".$status['memory_free']."','".$status['memory_buffer']."','".$status['io_tps']."','".$status['io_kB_read_s']."','".$status['io_kB_wrtn_s']."','".$status['io_kB_read']."','".$status['io_kB_wrtn']."','".$status['sw_type']."','".$status['sw_size']."','".$status['sw_used']."','".$status['sw_priority']."','".$status['time_detection']."')";
+ $query = mysql_query($sql) or die("SQL 语句执行失败!");
+ unset($status);
+
+?>

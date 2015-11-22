@@ -1,0 +1,10 @@
+<?php
+include("conn.php");
+$conn = new MyConnect();
+$conn->connect("localhost","root","864159025","LimeSurvey");
+
+$sql = "select * from lime_tokens_782191";
+$result = mysql_query($sql);
+print($result);
+
+?>

@@ -1,0 +1,44 @@
+  <?php
+    function send_mail($email) {
+      $url = 'http://sendcloud.sohu.com/webapi/mail.send.json';
+      $API_USER = 'douyu_test_7OK1vV';
+      $API_KEY = 'wMiLcq5qtXr4JyQt';
+
+      //不同于登录SendCloud站点的帐号，您需要登录后台创建发信子帐号，使用子帐号和密码才可以进行邮件的发送。
+      $param = array(
+          'api_user' => $API_USER,
+          'api_key' => $API_KEY,
+          'from' => 'service@sendcloud.im',
+          'fromname' => '来自乐乐的测试邮件',
+          'to' => $email,
+          'subject' => '你好，我是程序猿 乐乐',
+          'html' => '这是一封测试邮件~',
+          'resp_email_id' => 'true');
+      
+      $data = http_build_query($param);
+
+      $options = array(
+          'http' => array(
+              'method'  => 'POST',
+              'header' => 'Content-Type: application/x-www-form-urlencoded',
+              'content' => $data
+      ));
+
+      $context  = stream_context_create($options);
+      $result = file_get_contents($url, false, $context);
+
+      return $result;
+    }
+  //echo send_mail();
+echo "111111111111";
+echo $_GET['addr'];
+if(isset($_GET['addr']))
+{
+	echo send_mail($_GET['addr']);
+}
+else
+{
+	echo "sdassa";
+}
+
+?>

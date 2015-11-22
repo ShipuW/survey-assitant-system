@@ -1,0 +1,23 @@
+﻿<button id="first" onclick="first()">监控服务器状态</button>
+<button id="second" onclick="second()">查看在线人数</button>
+<button id="third" onclick="third()">查询功能</button>
+<button id="forth" onclick="forth()">发邮件</button>
+
+<script>
+	function first()
+	{
+		window.location.href="part1/get_used_status.php";	
+	}
+	function second()
+	{
+		window.location.href="part2/show_ip.php";
+	}
+	function third()
+	{
+		window.location.href="part3/jiemian.php";
+	}
+	function forth()
+	{
+		alert("哈哈，逗你玩儿");	
+	}
+</script>
